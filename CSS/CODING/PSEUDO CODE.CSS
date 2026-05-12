@@ -1,0 +1,27 @@
+div {
+    background-color: aquamarine;
+    color: blue;
+    padding: 50px;
+    text-align: center;
+}
+
+div:hover {
+    background-color: black;
+    color: brown;
+    margin: 50px;
+}
+
+input:focus {
+    background-color: black;
+    color: brown;
+}
+
+p:active {
+    color: rgb(171, 102, 18);
+}
+
+img:hover {
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+}

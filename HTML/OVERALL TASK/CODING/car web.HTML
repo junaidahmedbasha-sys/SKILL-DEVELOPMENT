@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Car Showroom</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar - From car coding 3.png */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header - From image coding.png */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Car Gallery - Based on car coding 4.png & 5.png */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .car-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .car-card img {
+            width: 100%;
+            border-radius: 5px;
+            height: 180px;
+            object-fit: cover;
+        }
+        .price {
+            color: green;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Form Styling - From car buy link 2.png & STUDENT FORM 1.png */
+        .form-section {
+            background-color: white;
+            margin: 40px auto;
+            padding: 20px;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        fieldset {
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        legend {
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 10px;
+        }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        .btn-group {
+            text-align: center;
+            margin-top: 15px;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 10px 25px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        input[type="submit"] { background-color: #27ae60; color: white; }
+        input[type="reset"] { background-color: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#gallery">Collections</a>
+        <a href="#buy">Buy Now</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <h1>Premium Car Collections</h1>
+
+    <div class="container" id="gallery">
+        <div class="car-card">
+            <img src="car1.jpg" alt="BMW M4">
+            <h3>BMW M4 Competition</h3>
+            <p class="price">$78,000</p>
+            <p>High-performance luxury coupe.</p>
+            <a href="#buy" style="color: blue;">View Details</a>
+        </div>
+
+        <div class="car-card">
+            <img src="car2.jpg" alt="Audi R8">
+            <h3>Audi R8 V10</h3>
+            <p class="price">$158,000</p>
+            <p>The ultimate supercar experience.</p>
+            <a href="#buy" style="color: blue;">View Details</a>
+        </div>
+
+        <div class="car-card">
+            <img src="car3.jpg" alt="Mercedes AMG">
+            <h3>Mercedes AMG GT</h3>
+            <p class="price">$115,000</p>
+            <p>Elegance meets raw power.</p>
+            <a href="#buy" style="color: blue;">View Details</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="form-section" id="buy">
+        <center><h2>Registration for Purchase</h2></center>
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Customer & Vehicle Details</legend>
+                
+                <label>Customer Name:</label>
+                <input type="text" name="fname" placeholder="Enter your full name" required>
+
+                <label>Email Address:</label>
+                <input type="email" name="email" placeholder="example@mail.com">
+
+                <label>Select Car Model:</label>
+                <select name="car_model">
+                    <option value="bmw">BMW M4 Competition</option>
+                    <option value="audi">Audi R8 V10</option>
+                    <option value="merc">Mercedes AMG GT</option>
+                </select>
+
+                <label>Delivery Address:</label>
+                <textarea name="address" rows="3" placeholder="Enter your full home address"></textarea>
+
+                <label>Payment Method:</label><br>
+                <input type="radio" name="pay" value="card"> Credit Card 
+                <input type="radio" name="pay" value="finance"> Bank Finance 
+                <input type="radio" name="pay" value="cash"> Cash
+                
+                <div class="btn-group">
+                    <input type="submit" value="Confirm Booking">
+                    <input type="reset" value="Clear Form">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <center>
+        <p>&copy; 2026 Lathish Car Showroom. All Rights Reserved.</p>
+    </center>
+
+</body>
+</html>

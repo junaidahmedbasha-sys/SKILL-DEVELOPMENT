@@ -1,0 +1,32 @@
+p {
+  background-color: #2784D77D;
+  color: aliceblue;
+}
+
+h1 {
+  text-align: left;
+}
+
+h2 {
+  text-align: right;
+}
+
+h3 {
+  text-align: center;
+}
+
+h4 {
+  text-align: justify;
+}
+
+.a {
+  text-align-last: left;
+}
+
+.b {
+  text-align-last: right;
+}
+
+.c {
+  text-align-last: center;
+}

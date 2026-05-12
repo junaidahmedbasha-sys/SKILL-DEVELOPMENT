@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechNova IT Solutions</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+      line-height:1.6;
+    }
+
+    header{
+      background:#111827;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#38bdf8;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#38bdf8;
+    }
+
+    .hero{
+      height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      background:linear-gradient(to right,#0f172a,#1e293b);
+    }
+
+    .hero-content h1{
+      font-size:55px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      color:#cbd5e1;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 30px;
+      background:#38bdf8;
+      color:black;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:white;
+    }
+
+    section{
+      padding:80px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:50px;
+      color:#38bdf8;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:#1e293b;
+      padding:30px;
+      border-radius:15px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      background:#334155;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#38bdf8;
+    }
+
+    .about{
+      display:flex;
+      flex-wrap:wrap;
+      gap:40px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      max-width:500px;
+      border-radius:15px;
+    }
+
+    .about-text{
+      flex:1;
+    }
+
+    footer{
+      background:#111827;
+      text-align:center;
+      padding:25px;
+      color:#94a3b8;
+    }
+
+    @media(max-width:768px){
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      nav{
+        display:none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" junaid TECH </div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Innovative IT Solutions For Your Business</h1>
+      <p>
+        We build secure, scalable and modern digital solutions
+        to help companies grow faster.
+      </p>
+
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="services">
+
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>
+          Professional and responsive websites using modern technologies.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cyber Security</h3>
+        <p>
+          Protect your business with advanced security solutions and monitoring.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cloud Solutions</h3>
+        <p>
+          Scalable cloud infrastructure for startups and enterprises.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>AI Integration</h3>
+        <p>
+          Smart AI-powered systems to automate and improve productivity.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">About Us</h2>
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Office">
+
+      <div class="about-text">
+        <h3 style="font-size:30px; margin-bottom:20px;">
+          We Create Digital Experiences
+        </h3>
+
+        <p>
+          TechNova is a leading IT company focused on delivering
+          high-quality software solutions, cybersecurity services,
+          cloud systems, and AI innovations for modern businesses.
+        </p>
+
+        <br>
+
+        <p>
+          Our mission is to help companies transform digitally
+          with secure and future-ready technology.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 TechNova IT Solutions. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
