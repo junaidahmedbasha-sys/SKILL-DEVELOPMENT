@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÉLO | Premium Minimalist E-Commerce</title>
+    <!-- Google Fonts & FontAwesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+            --primary: #111111;
+            --accent: #c5a880; /* Elegant gold/bronze accent */
+            --bg-light: #f9f9f9;
+            --bg-white: #ffffff;
+            --text-dark: #191919;
+            --text-muted: #767676;
+            --border-color: #e5e5e5;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- GLOBAL COMPONENTS --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background-color: var(--primary);
+            color: var(--bg-white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--bg-white);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* --- NAVIGATION HEADER --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.1rem;
+        }
+
+        .nav-icon-btn {
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-icon-btn:hover {
+            color: var(--accent);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- MULTI-PAGE ROUTING STRUCTURE --- */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .page-section.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================
+           PAGE 1: HOME PAGE
+           ========================================== */
+        .hero {
+            height: calc(100vh - 80px);
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--bg-white);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title strong {
+            font-weight: 700;
+        }
+
+        .features {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           PAGE 2: SHOP / PRODUCT CATALOG
+           ========================================== */
+        .shop-layout {
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background-color: var(--bg-white);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--bg-light);
+            aspect-ratio: 3/4;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .product-action-overlay {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+            transition: var(--transition);
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .product-card:hover .product-action-overlay {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* ==========================================
+           PAGE 3: PRODUCT DETAIL
+           ========================================== */
+        .detail-layout {
+            padding: 80px 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .detail-gallery {
+            background-color: var(--bg-light);
+            aspect-ratio: 4/5;
+        }
+
+        .detail-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-info-pane h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .detail-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .detail-desc {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+
+        .variants {
+            margin-bottom: 32px;
+        }
+
+        .variant-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .size-swatches {
+            display: flex;
+            gap: 12px;
+        }
+
+        .size-box {
+            width: 45px;
+            height: 45px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .size-box:hover, .size-box.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            width: 130px;
+            height: 50px;
+            margin-bottom: 32px;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-size: 1rem;
+            font-family: var(--font-main);
+        }
+
+        /* ==========================================
+           PAGE 4: SHOPPING CART
+           ========================================== */
+        .cart-layout {
+            padding: 80px 0;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        .cart-table th {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 2px solid var(--primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .cart-table td {
+            padding: 24px 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .cart-item-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            background-color: var(--bg-light);
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .cart-remove {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .cart-remove:hover {
+            color: red;
+        }
+
+        .cart-summary-box {
+            max-width: 400px;
+            margin-left: auto;
+            background-color: var(--bg-light);
+            padding: 32px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================
+           PAGE 5: CONTACT & ABOUT
+           ========================================== */
+        .contact-layout {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info-pane h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-info-pane p {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .contact-details-list {
+            margin-bottom: 40px;
+        }
+
+        .contact-detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail-row i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary);
+            color: var(--bg-white);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #767676;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .detail-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-title { font-size: 2.5rem; }
+            .cart-table th:nth-child(3), .cart-table td:nth-child(3) { display: none; } /* Hide quantity header/cells on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL NAVBAR -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo" onclick="navigateTo('home')">Vélo<span>.</span></div>
+            <nav class="nav-menu">
+                <span class="nav-link active" id="link-home" onclick="navigateTo('home')">Home</span>
+                <span class="nav-link" id="link-shop" onclick="navigateTo('shop')">Shop</span>
+                <span class="nav-link" id="link-detail" onclick="navigateTo('detail')">Product View</span>
+                <span class="nav-link" id="link-cart" onclick="navigateTo('cart')">Cart</span>
+                <span class="nav-link" id="link-contact" onclick="navigateTo('contact')">Contact</span>
+            </nav>
+            <div class="nav-icons">
+                <div class="nav-icon-btn" onclick="navigateTo('cart')">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count">2</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT FRAME CONTAINER -->
+    <main>
+
+        <!-- ==========================================
+           PAGE 1: HOME PAGE
+           ========================================== -->
+        <section id="page-home" class="page-section active-page">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">New Arrival Collection</p>
+                        <h1 class="hero-title">ESSENTIALS FOR <strong>MODERN LIVING</strong></h1>
+                        <button class="btn" onclick="navigateTo('shop')">Explore Catalog</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="features">
+                <div class="container features-grid">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-truck-fast feature-icon"></i>
+                        <h3 class="feature-title">Global Shipping</h3>
+                        <p class="feature-desc">Complimentary standard delivery on premium orders over $150.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-rotate-left feature-icon"></i>
+                        <h3 class="feature-title">Easy Returns</h3>
+                        <p class="feature-desc">Hassle-free 30-day return policy for peace of mind packaging.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-shield-halved feature-icon"></i>
+                        <h3 class="feature-title">Secure Checkout</h3>
+                        <p class="feature-desc">Bank-grade end-to-end encryption securing your transactions.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ==========================================
+           PAGE 2: SHOP / CATALOG PAGE
+           ========================================== */ -->
+        <section id="page-shop" class="page-section">
+            <div class="container shop-layout">
+                <h2 class="section-title">The Collection</h2>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card" onclick="navigateTo('detail')">
+                        <div class="product-img-wrapper">
+                            <span class="product-badge">New</span>
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80" alt="Minimalist Tee" class="product-img">
+                            <div class="product-action-overlay">
+                                <button class="btn btn-outline" style="background: white;">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Apparel</p>
+                            <h3 class="product-name">Minimalist Pima Tee</h3>
+                            <p class="product-price">$48.00</p>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card" onclick="navigateTo('detail')">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Aerodynamic Sneaker" class="product-img">
+                            <div class="product-action-overlay">
+                                <button class="btn btn-outline" style="background: white;">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Footwear</p>
+                            <h3 class="product-name">Aero Kinetic Sneaker</h3>
+                            <p class="product-price">$120.00</p>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card" onclick="navigateTo('detail')">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Studio Headphones" class="product-img">
+                            <div class="product-action-overlay">
+                                <button class="btn btn-outline" style="background: white;">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Audio</p>
+                            <h3 class="product-name">Studio Sound Over-Ear</h3>
+                            <p class="product-price">$299.00</p>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card" onclick="navigateTo('detail')">
+                        <div class="product-img-wrapper">
+                            <span class="product-badge">Sale</span>
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Leather Tote" class="product-img">
+                            <div class="product-action-overlay">
+                                <button class="btn btn-outline" style="background: white;">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Accessories</p>
+                            <h3 class="product-name">Classic Leather Tote</h3>
+                            <p class="product-price">$185.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+           PAGE 3: PRODUCT DETAIL PAGE
+           ========================================== -->
+        <section id="page-detail" class="page-section">
+            <div class="container detail-layout">
+                <div class="detail-grid">
+                    <div class="detail-gallery">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Studio Headphones Product View">
+                    </div>
+                    <div class="detail-info-pane">
+                        <h1>Studio Sound Over-Ear</h1>
+                        <p class="detail-price">$299.00</p>
+                        <p class="detail-desc">
+                            Engineered with high-fidelity acoustic drivers and seamless active noise cancellation architecture. Hand-selected lambskin memory foam earcups offer unmatched comfort structure for studio environments or elite daily commuting routines.
+                        </p>
+                        
+                        <div class="variants">
+                            <h4 class="variant-title">Select Color Variant</h4>
+                            <div class="size-swatches">
+                                <div class="size-box active">Matte Black</div>
+                                <div class="size-box">Silver</div>
+                            </div>
+                        </div>
+
+                        <div class="variants">
+                            <h4 class="variant-title">Quantity</h4>
+                            <div class="qty-selector">
+                                <button class="qty-btn" onclick="adjustQty(-1)">-</button>
+                                <input type="text" class="qty-input" id="detail-qty" value="1" readonly>
+                                <button class="qty-btn" onclick="adjustQty(1)">+</button>
+                            </div>
+                        </div>
+
+                        <button class="btn" style="width: 100%;" onclick="navigateTo('cart')">Add to Shopping Bag</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+           PAGE 4: SHOPPING CART PAGE
+           ========================================== -->
+        <section id="page-cart" class="page-section">
+            <div class="container cart-layout">
+                <h2 class="section-title">Your Cart</h2>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product Details</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="cart-item-meta">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150&q=80" alt="Product thumbnail" class="cart-item-img">
+                                    <div>
+                                        <h4 class="cart-item-title">Studio Sound Over-Ear</h4>
+                                        <p class="cart-category" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Color: Matte Black</p>
+                                        <span class="cart-remove">Remove</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>$299.00</td>
+                            <td>1</td>
+                            <td>$299.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cart-item-meta">
+                                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=150&q=80" alt="Product thumbnail" class="cart-item-img">
+                                    <div>
+                                        <h4 class="cart-item-title">Minimalist Pima Tee</h4>
+                                        <p class="cart-category" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Size: Medium</p>
+                                        <span class="cart-remove">Remove</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>$48.00</td>
+                            <td>1</td>
+                            <td>$48.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="cart-summary-box">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$347.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span style="color: var(--accent); font-weight: 500;">Complimentary</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Due</span>
+                        <span>$347.00</span>
+                    </div>
+                    <button class="btn" style="width: 100%; margin-top: 16px;" onclick="alert('Order successfully captured! Integration link placeholder.')">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+           PAGE 5: CONTACT & ABOUT PAGE
+           ========================================== -->
+        <section id="page-contact" class="page-section">
+            <div class="container contact-layout">
+                <h2 class="section-title">Get in Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-info-pane">
+                        <h3>Our Flagship Atelier</h3>
+                        <p>We invite you to experience our collections in person. Our design consultants are available for personalized styling schedules and system overviews.</p>
+                        
+                        <div class="contact-details-list">
+                            <div class="contact-detail-row">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div>
+                                    <strong>Address</strong>
+                                    <p>742 Minimalist Way, Suite 100, SoHo<br>New York, NY 10012</p>
+                                </div>
+                            </div>
+                            <div class="contact-detail-row">
+                                <i class="fa-solid fa-phone"></i>
+                                <div>
+                                    <strong>Client Services</strong>
+                                    <p>+1 (800) 555-0192 (Mon-Fri 9am - 6pm EST)</p>
+                                </div>
+                            </div>
+                            <div class="contact-detail-row">
+                                <i class="fa-solid fa-envelope"></i>
+                                <div>
+                                    <strong>General Inquiries</strong>
+                                    <p>concierge@velostudio.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-pane">
+                        <form id="contactForm" onsubmit="event.preventDefault(); alert('Message successfully sent!');">
+                            <div class="form-group">
+                                <label for="contact-name">Your Full Name</label>
+                                <input type="text" id="contact-name" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email Address</label>
+                                <input type="email" id="contact-email" class="form-control" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-msg">Message or Inquiry</label>
+                                <textarea id="contact-msg" class="form-control" rows="5" placeholder="How can our studio assist you today?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GLOBAL FOOTER SYSTEM -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="color: white; margin-bottom: 20px;">Vélo<span>.</span></div>
+                <p style="color: #a0a0a0; font-size: 0.9rem;">Curated design objects engineered with uncompromising luxury and intentional utility focus patterns.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <ul class="footer-links">
+                    <li><span style="cursor:pointer" onclick="navigateTo('shop')">New Arrivals</span></li>
+                    <li><span style="cursor:pointer" onclick="navigateTo('shop')">Apparel Matrix</span></li>
+                    <li><span style="cursor:pointer" onclick="navigateTo('shop')">Audio Essentials</span></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><span style="cursor:pointer" onclick="navigateTo('contact')">Client Services</span></li>
+                    <li><span style="cursor:pointer" onclick="navigateTo('contact')">Store Locations</span></li>
+                    <li><span style="cursor:pointer" onclick="navigateTo('contact')">Care & Repair</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 VÉLO Studio. All rights reserved globally. Designed for modern performance.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE ROUTING ENGINE & INTERACTION UTILITIES -->
+    <script>
+        // PAGE NAVIGATION ENGINE (Routing Logic)
+        function navigateTo(pageId) {
+            // Hide all active pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            // Update active state in Navigation Links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeLink = document.getElementById('link-' + pageId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Auto scroll to top of screen on view transition
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // PRODUCT QTY MODIFIER UTILITY
+        function adjustQty(amount) {
+            const qtyInput = document.getElementById('detail-qty');
+            let currentQty = parseInt(qtyInput.value);
+            currentQty += amount;
+            if(currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+        }
+    </script>
+</body>
+</html>
